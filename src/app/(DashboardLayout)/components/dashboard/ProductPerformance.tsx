@@ -107,12 +107,13 @@ const ProductPerformance = ({ data }: ProductPerformanceProps) => {
                   <TableCell align="center">
                     <Chip
                       sx={{
-                        px: "4px",
-                        backgroundColor: "orange",
+                        px: "8px", // Adjust padding for a larger appearance
+                        fontSize: "16px", // Customize font size for larger text
+                        bgcolor: "orange", // Use bgcolor instead of pbg
                         color: "white",
-                      }} // Correct styling
-                      size="large"
-                      label={2} // You may want to adjust this value to be dynamic if needed
+                      }}
+                      size="medium" // Keep size as "medium" or "small"
+                      label={2}
                     />
                   </TableCell>
                   <TableCell align="center">
