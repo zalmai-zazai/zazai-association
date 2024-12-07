@@ -13,8 +13,16 @@ import axios from "axios";
 
 // Define the types for the member data
 interface Member {
-  paidamount: number; // Ensure the paidamount is a number
+  _id: string;
+  firstname: string;
+  lastname: string;
+  job: string;
+  paidamount: number;
 }
+
+// interface Member {
+//   paidamount: number; // Ensure the paidamount is a number
+// }
 
 const Dashboard = () => {
   const [data, setData] = useState<Member[]>([]); // Use the Member type
