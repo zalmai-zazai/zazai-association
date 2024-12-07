@@ -1,8 +1,8 @@
 import connectDB from "@/lib/db";
 import Member from "@/models/Member";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(req) {
+export async function POST(req: NextRequest) {
   try {
     await connectDB();
     const { firstname, lastname, email, homeaddress, job, paidamount } =
@@ -27,7 +27,7 @@ export async function POST(req) {
   }
 }
 
-export async function GET(req) {
+export async function GET(req: NextRequest) {
   try {
     await connectDB();
     const data = await Member.find({});

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { Box, Typography, Button } from "@mui/material";
 import Link from "next/link";
 
@@ -63,7 +63,9 @@ const AuthRegister = ({ title, subtitle, subtext }: registerType) => {
             </Typography>
             <CustomTextField
               value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setUsername(e.target.value)
+              }
               id="name"
               variant="outlined"
               fullWidth
@@ -82,7 +84,9 @@ const AuthRegister = ({ title, subtitle, subtext }: registerType) => {
             </Typography>
             <CustomTextField
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setEmail(e.target.value)
+              }
               id="email"
               variant="outlined"
               fullWidth
@@ -102,7 +106,9 @@ const AuthRegister = ({ title, subtitle, subtext }: registerType) => {
             <CustomTextField
               type="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setPassword(e.target.value)
+              }
               id="password"
               variant="outlined"
               fullWidth

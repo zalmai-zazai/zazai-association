@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import {
   Box,
   Typography,
@@ -67,7 +67,9 @@ const AuthLogin = ({ title, subtitle, subtext }: loginType) => {
             </Typography>
             <CustomTextField
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setEmail(e.target.value)
+              }
               id="email"
               variant="outlined"
               fullWidth
@@ -86,7 +88,9 @@ const AuthLogin = ({ title, subtitle, subtext }: loginType) => {
             </Typography>
             <CustomTextField
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setPassword(e.target.value)
+              }
               type="password"
               variant="outlined"
               fullWidth

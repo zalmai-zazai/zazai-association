@@ -16,7 +16,7 @@ import AuthRegister from "@/app/authentication/auth/AuthRegister";
 import BlankCard from "../components/shared/BlankCard";
 import CustomTextField from "../components/forms/theme-elements/CustomTextField";
 import axios from "axios";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 const SamplePage = () => {
   const [firstname, setFirstName] = useState("");
@@ -77,7 +77,9 @@ const SamplePage = () => {
                 </Typography>
                 <CustomTextField
                   value={firstname}
-                  onChange={(e) => setFirstName(e.target.value)}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                    setFirstName(e.target.value)
+                  }
                   id="fname"
                   variant="outlined"
                   fullWidth
@@ -96,7 +98,9 @@ const SamplePage = () => {
                 </Typography>
                 <CustomTextField
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                    setEmail(e.target.value)
+                  }
                   id="email"
                   variant="outlined"
                   fullWidth
@@ -115,7 +119,9 @@ const SamplePage = () => {
                 </Typography>
                 <CustomTextField
                   value={job}
-                  onChange={(e) => setJob(e.target.value)}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                    setJob(e.target.value)
+                  }
                   id="job"
                   variant="outlined"
                   fullWidth
@@ -134,7 +140,9 @@ const SamplePage = () => {
                 </Typography>
                 <CustomTextField
                   value={lastname}
-                  onChange={(e) => setLastName(e.target.value)}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                    setLastName(e.target.value)
+                  }
                   id="lname"
                   variant="outlined"
                   fullWidth
@@ -153,7 +161,9 @@ const SamplePage = () => {
                 </Typography>
                 <CustomTextField
                   value={homeaddress}
-                  onChange={(e) => setHomeAddress(e.target.value)}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                    setHomeAddress(e.target.value)
+                  }
                   id="homeAddress"
                   variant="outlined"
                   fullWidth
@@ -173,7 +183,9 @@ const SamplePage = () => {
                 <CustomTextField
                   type="number"
                   value={paidamount}
-                  onChange={(e) => setPaidAmount(e.target.value)}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                    setPaidAmount(e.target.value)
+                  }
                   id="amount"
                   variant="outlined"
                   fullWidth
