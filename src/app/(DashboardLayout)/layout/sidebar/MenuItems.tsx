@@ -29,6 +29,15 @@ const Menuitems = [
     // icon: IconAperture,
     href: "/add-member",
   },
+
+  {
+    id: uniqueId(),
+    title: "About Us",
+    icon: IconLogin,
+    // icon: IconAperture,
+    href: "/about-us",
+  },
+
   {
     navlabel: true,
     subheader: "Utilities",
@@ -41,7 +50,7 @@ const Menuitems = [
   // },
   {
     id: uniqueId(),
-    title: "Regulations   ترزالعمال",
+    title: "Regulations   طرزالعمال",
     icon: IconTypography,
     href: "/utilities/typography",
   },

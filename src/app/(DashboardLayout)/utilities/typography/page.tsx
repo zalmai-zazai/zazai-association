@@ -1,15 +1,25 @@
-'use client';
-import { Typography, Grid, CardContent } from '@mui/material';
-import PageContainer from '@/app/(DashboardLayout)/components/container/PageContainer';
-import DashboardCard from '@/app/(DashboardLayout)/components/shared/DashboardCard';
-import BlankCard from '@/app/(DashboardLayout)/components/shared/BlankCard';
-
+"use client";
+import { Typography, Grid, CardContent, Box } from "@mui/material";
+import PageContainer from "@/app/(DashboardLayout)/components/container/PageContainer";
+import DashboardCard from "@/app/(DashboardLayout)/components/shared/DashboardCard";
+import BlankCard from "@/app/(DashboardLayout)/components/shared/BlankCard";
 
 const TypographyPage = () => {
   return (
     <PageContainer title="Typography" description="this is Typography">
+      <Box display={"flex"} justifyContent={"space-around"}>
+        <Typography variant="h5" fontWeight="600" sx={{ textAlign: "left" }}>
+          Regulations
+        </Typography>
+        <Typography variant="h5" fontWeight="600" sx={{ textAlign: "right" }}>
+          طرزالعمالونه
+        </Typography>
+      </Box>
+      {/* <iframe src="https://tabler-icons.io/"  title="Inline Frame Example" frameBorder={0}
+    width="100%"
+    height="650"></iframe> */}
 
-      <Grid container spacing={3}>
+      {/* <Grid container spacing={3}>
         <Grid item sm={12}>
           <DashboardCard title="Default Text">
             <Grid container spacing={3}>
@@ -260,7 +270,7 @@ const TypographyPage = () => {
             </Grid>
           </DashboardCard>
         </Grid>
-      </Grid >
+      </Grid > */}
     </PageContainer>
   );
 };
