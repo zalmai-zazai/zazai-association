@@ -5,7 +5,13 @@ import { Stack, Typography, Avatar, Fab, Box } from "@mui/material";
 import { IconArrowDownRight, IconCurrencyDollar } from "@tabler/icons-react";
 import DashboardCard from "@/app/(DashboardLayout)/components/shared/DashboardCard";
 
-const MonthlyEarnings = ({ totalPaidAmount }) => {
+interface MonthlyEarningsProps {
+  totalPaidAmount: number; // Add an explicit type for the totalPaidAmount
+}
+
+const MonthlyEarnings: React.FC<MonthlyEarningsProps> = ({
+  totalPaidAmount,
+}) => {
   // chart color
   const theme = useTheme();
   const secondary = theme.palette.secondary.main;

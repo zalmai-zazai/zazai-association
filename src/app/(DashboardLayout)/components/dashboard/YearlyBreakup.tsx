@@ -1,26 +1,35 @@
 import dynamic from "next/dynamic";
-const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 import { useTheme } from "@mui/material/styles";
-import { Grid, Stack, Typography, Avatar, Box } from "@mui/material";
+import { Grid, Stack, Typography, Avatar } from "@mui/material";
 import { IconArrowUpLeft } from "@tabler/icons-react";
-
 import DashboardCard from "@/app/(DashboardLayout)/components/shared/DashboardCard";
 
-const YearlyBreakup = ({ totalPaidAmount }) => {
+const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
+
+interface YearlyBreakupProps {
+  totalPaidAmount: number;
+}
+
+const YearlyBreakup = ({ totalPaidAmount }: YearlyBreakupProps) => {
   // chart color
   const theme = useTheme();
   const primary = theme.palette.primary.main;
   const primarylight = "#ecf2ff";
   const successlight = theme.palette.success.light;
 
-  function calculatePercentage(amount: number, total: number = 10000): number {
+  // Helper function to calculate percentage
+  const calculatePercentage = (
+    amount: number,
+    total: number = 10000
+  ): number => {
     if (total === 0) return 0; // Avoid division by zero
     return (amount / total) * 100;
-  }
-  const amount = 800; // Example amount
+  };
+
+  // Calculate percentage
   const percentage = calculatePercentage(totalPaidAmount);
 
-  // chart
+  // Chart options
   const optionscolumnchart: any = {
     chart: {
       type: "donut",
@@ -66,7 +75,8 @@ const YearlyBreakup = ({ totalPaidAmount }) => {
       },
     ],
   };
-  // const seriescolumnchart: any = [percentage, 40, 100 - percentage];
+
+  // Chart series (data)
   const seriescolumnchart: any = [percentage, 100 - percentage];
 
   return (
@@ -77,7 +87,7 @@ const YearlyBreakup = ({ totalPaidAmount }) => {
         </Typography>
 
         <Grid container spacing={3}>
-          {/* column */}
+          {/* Text Column */}
           <Grid item xs={7} sm={7}>
             <Typography variant="h3" fontWeight="700">
               ${totalPaidAmount}
@@ -87,12 +97,14 @@ const YearlyBreakup = ({ totalPaidAmount }) => {
                 <IconArrowUpLeft width={20} color="#39B69A" />
               </Avatar>
               <Typography variant="subtitle2" fontWeight="600">
-                +{percentage}%
+                +{percentage.toFixed(2)}%
               </Typography>
               <Typography variant="subtitle2" color="textSecondary">
                 last year
               </Typography>
             </Stack>
+
+            {/* Legend */}
             <Stack spacing={3} mt={5} direction="row">
               <Stack direction="row" spacing={1} alignItems="center">
                 <Avatar
@@ -122,7 +134,8 @@ const YearlyBreakup = ({ totalPaidAmount }) => {
               </Stack>
             </Stack>
           </Grid>
-          {/* column */}
+
+          {/* Chart Column */}
           <Grid item xs={5} sm={5}>
             <Chart
               options={optionscolumnchart}

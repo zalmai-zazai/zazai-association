@@ -11,23 +11,33 @@ import MonthlyEarnings from "@/app/(DashboardLayout)/components/dashboard/Monthl
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+// Define the types for the member data
+interface Member {
+  paidamount: number; // Ensure the paidamount is a number
+}
+
 const Dashboard = () => {
-  const [data, setData] = useState([]);
-  const [totalPaidAmount, setTotalPaidAmount] = useState("");
+  const [data, setData] = useState<Member[]>([]); // Use the Member type
+  const [totalPaidAmount, setTotalPaidAmount] = useState<number>(0); // totalPaidAmount is a number
 
   const fetchData = async () => {
-    const response = await axios.get("api/member");
-    console.log(response);
-    const fetchedData = response.data.data;
-    setData(fetchedData);
-    const total = fetchedData.reduce((sum: Number, member) => {
-      return sum + member.paidamount || 0;
-    }, 0);
+    try {
+      const response = await axios.get("api/member");
+      console.log(response);
+      const fetchedData: Member[] = response.data.data; // Ensure the data is typed as Member[]
+      setData(fetchedData);
 
-    setTotalPaidAmount(total);
+      // Calculate total paid amount
+      const total = fetchedData.reduce((sum, member) => {
+        return sum + (member.paidamount || 0); // Add the paidamount, default to 0 if it's undefined
+      }, 0);
+
+      setTotalPaidAmount(total);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   };
 
-  console.log(totalPaidAmount);
   useEffect(() => {
     fetchData();
   }, []);
