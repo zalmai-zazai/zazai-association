@@ -48,12 +48,12 @@ const Menuitems = [
   //   icon: IconTypography,
   //   href: "/utilities/typography",
   // },
-  // {
-  //   id: uniqueId(),
-  //   title: "Regulations   طرزالعمال",
-  //   icon: IconTypography,
-  //   href: "/utilities/typography",
-  // },
+  {
+    id: uniqueId(),
+    title: "Regulations   طرزالعمال",
+    icon: IconTypography,
+    href: "/utilities/typography",
+  },
   // {
   //   id: uniqueId(),
   //   title: "Shadow",
