@@ -39,11 +39,7 @@ const galleryItems: GalleryItem[] = [
     description: "A peaceful walk through a forest trail.",
     imageUrl: "images/products/3.jpg",
   },
-  {
-    title: "Sunset Beach",
-    description: "A beautiful view of the beach at sunset.",
-    imageUrl: "images/products/1.jpg",
-  },
+  ,
   {
     title: "Mountain View",
     description: "The view from the top of the mountain during sunrise.",
@@ -59,11 +55,7 @@ const galleryItems: GalleryItem[] = [
     description: "A peaceful walk through a forest trail.",
     imageUrl: "images/products/3.jpg",
   },
-  {
-    title: "Sunset Beach",
-    description: "A beautiful view of the beach at sunset.",
-    imageUrl: "images/products/1.jpg",
-  },
+  ,
   {
     title: "Mountain View",
     description: "The view from the top of the mountain during sunrise.",
@@ -79,11 +71,7 @@ const galleryItems: GalleryItem[] = [
     description: "A peaceful walk through a forest trail.",
     imageUrl: "images/products/3.jpg",
   },
-  {
-    title: "Sunset Beach",
-    description: "A beautiful view of the beach at sunset.",
-    imageUrl: "images/products/1.jpg",
-  },
+  ,
   {
     title: "Mountain View",
     description: "The view from the top of the mountain during sunrise.",
