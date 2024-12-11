@@ -1,6 +1,6 @@
 "use client";
 import PageContainer from "@/app/(DashboardLayout)/components/container/PageContainer";
-import DashboardCard from "@/app/(DashboardLayout)/components/shared/DashboardCard";
+
 import {
   Grid,
   Card,
@@ -39,54 +39,7 @@ const galleryItems: GalleryItem[] = [
     description: "A peaceful walk through a forest trail.",
     imageUrl: "images/products/3.jpg",
   },
-  ,
-  {
-    title: "Mountain View",
-    description: "The view from the top of the mountain during sunrise.",
-    imageUrl: "images/products/5.jpg",
-  },
-  {
-    title: "City Skyline",
-    description: "The skyline of a modern city at night.",
-    imageUrl: "images/products/2.jpg",
-  },
-  {
-    title: "Forest Trail",
-    description: "A peaceful walk through a forest trail.",
-    imageUrl: "images/products/3.jpg",
-  },
-  ,
-  {
-    title: "Mountain View",
-    description: "The view from the top of the mountain during sunrise.",
-    imageUrl: "images/products/5.jpg",
-  },
-  {
-    title: "City Skyline",
-    description: "The skyline of a modern city at night.",
-    imageUrl: "images/products/2.jpg",
-  },
-  {
-    title: "Forest Trail",
-    description: "A peaceful walk through a forest trail.",
-    imageUrl: "images/products/3.jpg",
-  },
-  ,
-  {
-    title: "Mountain View",
-    description: "The view from the top of the mountain during sunrise.",
-    imageUrl: "images/products/5.jpg",
-  },
-  {
-    title: "City Skyline",
-    description: "The skyline of a modern city at night.",
-    imageUrl: "images/products/2.jpg",
-  },
-  {
-    title: "Forest Trail",
-    description: "A peaceful walk through a forest trail.",
-    imageUrl: "images/products/3.jpg",
-  },
+  // Removed unnecessary commas
 ];
 
 const HoverCard = styled(Card)(({ theme }) => ({
@@ -95,7 +48,6 @@ const HoverCard = styled(Card)(({ theme }) => ({
   transition: "transform 0.3s ease, box-shadow 0.3s ease",
   "&:hover": {
     transform: "scale(1.05)",
-    // theme injected automatically
   },
 }));
 
@@ -135,13 +87,6 @@ const Icons: React.FC = () => {
           ))}
         </Grid>
       </Box>
-
-      {/* <DashboardCard title="Icons">
-        <Typography>Gallery Comming soon</Typography> */}
-      {/* <iframe src="https://tabler-icons.io/"  title="Inline Frame Example" frameBorder={0}
-    width="100%"
-    height="650"></iframe> */}
-      {/* </DashboardCard> */}
     </PageContainer>
   );
 };
