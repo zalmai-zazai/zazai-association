@@ -18,7 +18,7 @@ const TypographyPage = () => {
         </Typography>
       </Box>
 
-      <Grid item xs={12} lg={4}>
+      <Grid mt={4} item xs={12} lg={4}>
         <Grid container spacing={3}>
           <Grid item xs={12} lg={6}>
             <RegulationSecond />

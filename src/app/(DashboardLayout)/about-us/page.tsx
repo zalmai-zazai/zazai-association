@@ -38,9 +38,9 @@ const AboutUs: React.FC = () => {
               <Grid item xs={12}>
                 <AboutThird />
               </Grid>
-              <Grid item xs={12}>
+              {/* <Grid item xs={12}>
                 <AboutThird />
-              </Grid>
+              </Grid> */}
             </Grid>
           </Grid>
           {/* <Grid item xs={12} lg={4}>
