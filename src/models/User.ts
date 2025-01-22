@@ -4,6 +4,7 @@ interface IUser extends Document {
   username: string;
   email: string;
   password: string;
+  isAdmin: boolean;
 }
 
 const UserSchema = new mongoose.Schema({
@@ -19,6 +20,10 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
+  },
+  isAdmin: {
+    type: Boolean,
+    default: false,
   },
 });
 const User = mongoose.models.User || mongoose.model<IUser>("User", UserSchema);

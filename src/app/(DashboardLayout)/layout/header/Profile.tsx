@@ -24,6 +24,7 @@ const Profile = () => {
 
   const logoutUser = () => {
     localStorage.setItem("user", "");
+    localStorage.setItem("isAdmin", "");
   };
 
   return (

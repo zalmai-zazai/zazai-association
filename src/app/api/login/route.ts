@@ -24,7 +24,9 @@ export async function POST(req: NextRequest) {
         messageStatus: "incorrect",
       });
     }
-    const loginUser = existingUser.username;
+    const loginUser = existingUser;
+    // const isAdmin = existingUser.isAdmin;
+
     return NextResponse.json({
       message: "success",
       status: 2001,

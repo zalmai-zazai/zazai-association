@@ -34,9 +34,19 @@ const AuthLogin = ({ title, subtitle, subtext }: loginType) => {
       const response = await axios.post("../api/login", { email, password });
       setResponseMessage(response.data.message);
       if (response.data.message === "success") {
-        localStorage.setItem("user", JSON.stringify(response.data.user));
+        localStorage.setItem(
+          "user",
+          JSON.stringify(response.data.user.username)
+        );
+        if (response.data.user.isAdmin) {
+          localStorage.setItem(
+            "isAdmin",
+            JSON.stringify(response.data.user.isAdmin)
+          );
+        }
         router.push("/");
-        console.log(response.data.user);
+        // console.log(response.data.user);
+        // console.log(response.data);
       }
     } catch (error) {
       return NextResponse.json({ message: "Can not find the route" });

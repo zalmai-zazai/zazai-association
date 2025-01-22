@@ -31,7 +31,7 @@ const Dashboard = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get("api/member");
-      console.log(response);
+      // console.log(response);
       const fetchedData: Member[] = response.data.data; // Ensure the data is typed as Member[]
       setData(fetchedData);
 
