@@ -7,8 +7,33 @@ import {
   TableHead,
   TableRow,
   Chip,
+  Avatar,
 } from "@mui/material";
 import DashboardCard from "@/app/(DashboardLayout)/components/shared/DashboardCard";
+
+// Dynamically import all images from the public/profile folder
+const avatarImages = {
+  zalmai: "/images/profile/zalmai.jpg",
+  akhtar: "/images/profile/akhtar.jpg",
+  aman: "/images/profile/aman.jpg",
+  alam: "/images/profile/alam.jpg",
+  dawood: "/images/profile/dawood.jpg",
+  faizMohammad: "/images/profile/faizMohammad.jpg",
+  hamid: "/images/profile/hamid.jpg",
+  haroon: "/images/profile/haroon.jpg",
+  hizbullah: "/images/profile/hizbullah.jpg",
+  ismail: "/images/profile/ismail.jpg",
+  javid: "/images/profile/javid.jpg",
+  lajbar: "/images/profile/lajbar.jpg",
+  malik: "/images/profile/malik.jpg",
+  mohammadullah: "/images/profile/mohammadullah.jpg",
+  mustafa: "/images/profile/mustafa.jpg",
+  najibullah: "/images/profile/najibullah.jpg",
+  abdulqayoum: "/images/profile/qayoum.jpg",
+  tahir: "/images/profile/tahir.jpg",
+
+  // Add more images here manually, matching the names of members
+};
 
 // Define the types for member data
 interface Member {
@@ -24,6 +49,12 @@ interface ProductPerformanceProps {
 }
 
 const ProductPerformance = ({ data }: ProductPerformanceProps) => {
+  // Function to find the matching avatar based on the firstname
+  const getAvatarImage = (firstname: string): string => {
+    const formattedName = firstname.trim().replace(/\s+/g, "").toLowerCase();
+    return avatarImages[formattedName] || "/images/profile/default.png";
+  };
+
   return (
     <DashboardCard>
       <>
@@ -47,12 +78,12 @@ const ProductPerformance = ({ data }: ProductPerformanceProps) => {
               <TableRow>
                 <TableCell>
                   <Typography variant="subtitle2" fontWeight={600}>
-                    Id
+                    Avatar
                   </Typography>
                 </TableCell>
                 <TableCell>
                   <Typography variant="subtitle2" fontWeight={600}>
-                    First Name
+                    Name
                   </Typography>
                 </TableCell>
                 <TableCell>
@@ -76,9 +107,14 @@ const ProductPerformance = ({ data }: ProductPerformanceProps) => {
               {data.map((member) => (
                 <TableRow key={member._id}>
                   <TableCell>
-                    <Typography sx={{ fontSize: "15px", fontWeight: "500" }}>
+                    {/* <Typography sx={{ fontSize: "15px", fontWeight: "500" }}>
                       {member._id.slice(-4)}
-                    </Typography>
+                    </Typography> */}
+                    <Avatar
+                      alt={`${member.firstname} ${member.lastname}`}
+                      src={getAvatarImage(member.firstname)} // Match image with member's firstname
+                      sx={{ width: 70, height: 70 }} // Set the size of the avatar
+                    />
                   </TableCell>
                   <TableCell>
                     <Box sx={{ display: "flex", alignItems: "center" }}>
