@@ -12,7 +12,7 @@ import {
 import DashboardCard from "@/app/(DashboardLayout)/components/shared/DashboardCard";
 
 // Dynamically import all images from the public/profile folder
-const avatarImages = {
+const avatarImages: { [key: string]: string } = {
   zalmai: "/images/profile/zalmai.jpg",
   akhtar: "/images/profile/akhtar.jpg",
   aman: "/images/profile/aman.jpg",
