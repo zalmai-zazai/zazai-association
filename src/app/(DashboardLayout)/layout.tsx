@@ -3,6 +3,8 @@ import { styled, Container, Box } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Header from "@/app/(DashboardLayout)/layout/header/Header";
 import Sidebar from "@/app/(DashboardLayout)/layout/sidebar/Sidebar";
+import "react-toastify/dist/ReactToastify.css"; // Toastify CSS
+import { ToastContainer, toast } from "react-toastify"; // Toastify components
 
 const MainWrapper = styled("div")(() => ({
   display: "flex",
@@ -33,6 +35,7 @@ export default function RootLayout({
 
   return (
     <MainWrapper className="mainwrapper">
+      <ToastContainer />
       {/* ------------------------------------------- */}
       {/* Sidebar */}
       {/* ------------------------------------------- */}

@@ -27,7 +27,14 @@ interface Member {
 const Dashboard = () => {
   const [data, setData] = useState<Member[]>([]); // Use the Member type
   const [totalPaidAmount, setTotalPaidAmount] = useState<number>(0); // totalPaidAmount is a number
+  const [admin, setAdmin] = useState(false);
 
+  useEffect(() => {
+    const storedUser = localStorage.getItem("isAdmin");
+    if (storedUser) {
+      setAdmin(JSON.parse(storedUser));
+    }
+  }, []);
   const fetchData = async () => {
     try {
       const response = await axios.get("api/member");
@@ -77,7 +84,7 @@ const Dashboard = () => {
             <RecentTransactions />
           </Grid> */}
           <Grid item xs={12} lg={8}>
-            <ProductPerformance data={data} />
+            <ProductPerformance admin={admin} data={data} />
           </Grid>
           <Grid item xs={12}>
             <Blog />

@@ -13,7 +13,10 @@ import {
 
 import { IconListCheck, IconMail, IconUser } from "@tabler/icons-react";
 
-const Profile = () => {
+interface ProfileProps {
+  image: string | undefined; // The image URL passed from the parent
+}
+const Profile: React.FC<ProfileProps> = ({ image }) => {
   const [anchorEl2, setAnchorEl2] = useState(null);
   const handleClick2 = (event: any) => {
     setAnchorEl2(event.currentTarget);
@@ -43,7 +46,7 @@ const Profile = () => {
         onClick={handleClick2}
       >
         <Avatar
-          src="/images/profile/user-1.jpg"
+          src={image}
           alt="image"
           sx={{
             width: 35,

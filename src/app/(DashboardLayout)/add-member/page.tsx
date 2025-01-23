@@ -17,6 +17,7 @@ import BlankCard from "../components/shared/BlankCard";
 import CustomTextField from "../components/forms/theme-elements/CustomTextField";
 import axios from "axios";
 import { ChangeEvent, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 const SamplePage = () => {
   const [firstname, setFirstName] = useState("");
@@ -37,16 +38,16 @@ const SamplePage = () => {
 
   const handelSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const response = await axios.post("api/member", {
+      firstname,
+      lastname,
+      email,
+      homeaddress,
+      job,
+      paidamount: Number(paidamount),
+    });
 
     try {
-      const response = await axios.post("api/member", {
-        firstname,
-        lastname,
-        email,
-        homeaddress,
-        job,
-        paidamount: Number(paidamount),
-      });
       if (response.data.status === 201) {
         setMessage(response.data.message);
         setFirstName("");
@@ -55,9 +56,15 @@ const SamplePage = () => {
         setHomeAddress("");
         setJob("");
         setPaidAmount("");
+        toast.success(response.data.message);
+      } else if (response.data.status === 400) {
+        setMessage(response.data.message);
+        toast.error(message);
       }
     } catch (error) {
       console.log("Erro adding member", error);
+      setMessage(response.data.message);
+      toast.error(message);
     }
   };
   return (
@@ -214,13 +221,13 @@ const SamplePage = () => {
                   >
                     Add
                   </Button>
-                  {message ? (
+                  {/* {message ? (
                     <Alert variant="standard" color="info">
                       {message!}
                     </Alert>
                   ) : (
                     ""
-                  )}
+                  )} */}
                 </Box>
               </form>
             </>

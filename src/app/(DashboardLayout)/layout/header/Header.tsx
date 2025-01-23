@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import PropTypes from "prop-types";
 import Link from "next/link";
+import { avatarImages } from "@/utils/avatarImages";
 // components
 import Profile from "./Profile";
 import { IconBellRinging, IconMenu } from "@tabler/icons-react";
@@ -30,6 +31,17 @@ const Header = ({ toggleMobileSidebar }: ItemType) => {
       setUser(JSON.parse(storedUser));
     }
   }, []);
+  const profileImage = user
+    ? (() => {
+        const firstName = user.split(" ")[0].toLowerCase(); // Get the first part of the name
+        const matchedKey = Object.keys(avatarImages).find(
+          (key) => key.toLowerCase().includes(firstName) // Case-insensitive matching
+        );
+        return matchedKey
+          ? avatarImages[matchedKey as keyof typeof avatarImages]
+          : "/images/profile/default.png";
+      })()
+    : "/images/profile/default.png"; // Default image if no user
 
   const AppBarStyled = styled(AppBar)(({ theme }) => ({
     boxShadow: "none",
@@ -91,7 +103,7 @@ const Header = ({ toggleMobileSidebar }: ItemType) => {
             </Button>
           )}
 
-          {user ? <Profile /> : ""}
+          {user ? <Profile image={profileImage} /> : ""}
         </Stack>
       </ToolbarStyled>
     </AppBarStyled>
