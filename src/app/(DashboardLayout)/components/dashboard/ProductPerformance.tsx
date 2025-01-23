@@ -28,7 +28,7 @@ import { avatarImages } from "@/utils/avatarImages";
 //   aman: "/images/profile/Aman.jpg",
 //   alam: "/images/profile/Alam.jpg",
 //   dawood: "/images/profile/Dawood.jpg",
-//   faizMohammad: "/images/profile/FaizMohammad.jpg",
+//   faizMohammad: "/images/profile/Faiz.jpg",
 //   hamid: "/images/profile/Hamid.jpg",
 //   haroon: "/images/profile/Haroon.jpg",
 //   hizbullah: "/images/profile/Hizbullah.jpg",
