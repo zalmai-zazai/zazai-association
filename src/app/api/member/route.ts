@@ -5,8 +5,16 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {
   try {
     await connectDB();
-    const { firstname, lastname, email, homeaddress, job, paidamount } =
-      await req.json();
+    const {
+      firstname,
+      lastname,
+      email,
+      homeaddress,
+      job,
+      paidamount,
+      familymembers,
+      date,
+    } = await req.json();
     const existingMember = await Member.findOne({ firstname });
     if (existingMember) {
       return NextResponse.json({
@@ -14,6 +22,7 @@ export async function POST(req: NextRequest) {
         status: 400,
       });
     } else {
+      console.log(firstname, familymembers, date);
       const newMember = new Member({
         firstname,
         lastname,
@@ -21,6 +30,8 @@ export async function POST(req: NextRequest) {
         homeaddress,
         job,
         paidamount,
+        familymembers,
+        date: new Date(date),
       });
       await newMember.save();
       return NextResponse.json({

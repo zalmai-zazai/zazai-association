@@ -18,6 +18,11 @@ interface Member {
   lastname: string;
   job: string;
   paidamount: number;
+  email: string;
+  homeaddress: string;
+
+  familymembers: number;
+  date: string;
 }
 
 // interface Member {

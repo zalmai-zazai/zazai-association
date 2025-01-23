@@ -49,8 +49,8 @@ const Profile: React.FC<ProfileProps> = ({ image }) => {
           src={image}
           alt="image"
           sx={{
-            width: 35,
-            height: 35,
+            width: 60,
+            height: 60,
           }}
         />
       </IconButton>

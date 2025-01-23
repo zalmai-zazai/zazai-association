@@ -1,19 +1,7 @@
 "use client";
-import {
-  Alert,
-  Box,
-  Button,
-  Card,
-  Grid,
-  Link,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Stack, Typography } from "@mui/material";
 import PageContainer from "@/app/(DashboardLayout)/components/container/PageContainer";
 import DashboardCard from "@/app/(DashboardLayout)/components/shared/DashboardCard";
-import { Logo } from "react-mui-sidebar";
-import AuthRegister from "@/app/authentication/auth/AuthRegister";
-import BlankCard from "../components/shared/BlankCard";
 import CustomTextField from "../components/forms/theme-elements/CustomTextField";
 import axios from "axios";
 import { ChangeEvent, useEffect, useState } from "react";
@@ -26,6 +14,8 @@ const SamplePage = () => {
   const [homeaddress, setHomeAddress] = useState("");
   const [job, setJob] = useState("");
   const [paidamount, setPaidAmount] = useState("");
+  const [familymembers, setFamilyMembers] = useState("");
+  const [date, setDate] = useState("");
   const [message, setMessage] = useState("");
   const [admin, setAdmin] = useState(false);
 
@@ -36,18 +26,42 @@ const SamplePage = () => {
     }
   }, []);
 
-  const handelSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const response = await axios.post("api/member", {
-      firstname,
-      lastname,
-      email,
-      homeaddress,
-      job,
-      paidamount: Number(paidamount),
-    });
 
+    // Validate inputs
+    const amount = Number(paidamount);
+    const familyCount = Number(familymembers);
+    const selectedDate = new Date(date);
+
+    if (amount <= 0) {
+      toast.error("Paid amount must be greater than 0.");
+      return;
+    }
+
+    if (familyCount < 1) {
+      toast.error("Family members must be at least 1.");
+      return;
+    }
+
+    if (isNaN(selectedDate.getTime())) {
+      toast.error("Please provide a valid date.");
+      return;
+    }
+
+    // Proceed with submission
     try {
+      const response = await axios.post("api/member", {
+        firstname,
+        lastname,
+        email,
+        homeaddress,
+        job,
+        paidamount: amount,
+        familymembers: familyCount,
+        date: selectedDate.toISOString(), // Store date in ISO format
+      });
+
       if (response.data.status === 201) {
         setMessage(response.data.message);
         setFirstName("");
@@ -56,17 +70,20 @@ const SamplePage = () => {
         setHomeAddress("");
         setJob("");
         setPaidAmount("");
+        setFamilyMembers("");
+        setDate("");
         toast.success(response.data.message);
-      } else if (response.data.status === 400) {
+      } else {
         setMessage(response.data.message);
-        toast.error(message);
+        toast.error(response.data.message);
       }
     } catch (error) {
-      console.log("Erro adding member", error);
-      setMessage(response.data.message);
-      toast.error(message);
+      console.error("Error adding member", error);
+      setMessage("Failed to add member. Please try again.");
+      toast.error("Failed to add member. Please try again.");
     }
   };
+
   return (
     <PageContainer title="Sample Page" description="this is Sample page">
       <DashboardCard title="Add member">
@@ -76,7 +93,7 @@ const SamplePage = () => {
           ) : (
             <>
               <Typography>Please enter all the details for member</Typography>
-              <form onSubmit={handelSubmit}>
+              <form onSubmit={handleSubmit}>
                 <Box
                   mt={3}
                   display="flex"
@@ -145,6 +162,27 @@ const SamplePage = () => {
                       fullWidth
                       required
                     />
+                    <Typography
+                      variant="subtitle1"
+                      fontWeight={200}
+                      component="label"
+                      htmlFor="date"
+                      mb="5px"
+                      mt="25px"
+                    >
+                      Date
+                    </Typography>
+                    <CustomTextField
+                      type="date"
+                      value={date}
+                      onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                        setDate(e.target.value)
+                      }
+                      id="date"
+                      variant="outlined"
+                      fullWidth
+                      required
+                    />
                   </Stack>
                   <Stack mb={3} ml={2} flex={1}>
                     <Typography
@@ -187,6 +225,27 @@ const SamplePage = () => {
                       fullWidth
                       required
                     />
+                    <Typography
+                      variant="subtitle1"
+                      fontWeight={200}
+                      component="label"
+                      htmlFor="members"
+                      mb="5px"
+                      mt="25px"
+                    >
+                      Family Members
+                    </Typography>
+                    <CustomTextField
+                      type="number"
+                      value={familymembers}
+                      onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                        setFamilyMembers(e.target.value)
+                      }
+                      id="members"
+                      variant="outlined"
+                      fullWidth
+                      required
+                    />
 
                     <Typography
                       variant="subtitle1"
@@ -221,13 +280,6 @@ const SamplePage = () => {
                   >
                     Add
                   </Button>
-                  {/* {message ? (
-                    <Alert variant="standard" color="info">
-                      {message!}
-                    </Alert>
-                  ) : (
-                    ""
-                  )} */}
                 </Box>
               </form>
             </>

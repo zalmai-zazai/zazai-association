@@ -7,6 +7,8 @@ interface Mschema extends Document {
   homeaddress: String;
   job: String;
   paidamount: Number;
+  familymembers: Number;
+  date: Date;
 }
 
 const MemberSchema = new mongoose.Schema({
@@ -16,6 +18,8 @@ const MemberSchema = new mongoose.Schema({
   homeaddress: { type: String, required: true },
   job: { type: String, required: true },
   paidamount: { type: Number, required: true },
+  familymembers: { type: Number, required: true },
+  date: { type: Date },
 });
 
 const Member =

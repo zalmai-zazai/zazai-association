@@ -49,6 +49,10 @@ interface Member {
   lastname: string;
   job: string;
   paidamount: number;
+  email: string;
+  homeaddress: string;
+  familymembers: number;
+  date: string;
 }
 
 interface ProductPerformanceProps {
@@ -92,15 +96,18 @@ const ProductPerformance = ({
 
       if (response.status === 200) {
         toast.success(response.data.message);
-        // Optionally, refresh or update the list of members
-        // Example: setMembers(members.filter((member) => member._id !== selectedMember._id));
+
+        // Update the members state to reflect the deletion
+        setMembers((prevMembers) =>
+          prevMembers.filter((member) => member._id !== selectedMember._id)
+        );
+
         setOpenDialog(false); // Close dialog after delete
       } else {
         toast.error(response.data.message);
       }
     } catch (error) {
       console.error("Error deleting member:", error);
-
       toast.error("Error deleting member. Please try again.");
     }
   };
@@ -157,7 +164,7 @@ const ProductPerformance = ({
               </TableRow>
             </TableHead>
             <TableBody>
-              {data.map((member) => (
+              {members.map((member) => (
                 <TableRow key={member._id}>
                   <TableCell>
                     <Avatar
@@ -203,7 +210,7 @@ const ProductPerformance = ({
                         color: "white",
                       }}
                       size="medium"
-                      label={2}
+                      label={member.familymembers}
                     />
                   </TableCell>
                   <TableCell align="center">
@@ -236,14 +243,27 @@ const ProductPerformance = ({
                 onClick={() => handleMemberClick(selectedMember)} // Open dialog on click
               />
 
-              <Box sx={{ padding: 1, textAlign: "center", marginBottom: 2 }}>
-                <Typography variant="h6" sx={{ marginBottom: 1 }}>
+              <Box sx={{ padding: 1, textAlign: "left", marginBottom: 2 }}>
+                <Typography variant="h5" sx={{ marginBottom: 1 }}>
                   {selectedMember.firstname} {selectedMember.lastname}
                 </Typography>
                 <Typography variant="body1" sx={{ marginBottom: 1 }}>
                   Job: {selectedMember.job}
                 </Typography>
                 <Typography variant="body1">
+                  Email: {selectedMember.email}
+                </Typography>
+                <Typography variant="body1">
+                  Home Address: {selectedMember.homeaddress}
+                </Typography>
+                <Typography variant="body1">
+                  Family Members: {selectedMember.familymembers}
+                </Typography>
+                <Typography variant="body1">
+                  Date: {new Date(selectedMember?.date).toLocaleDateString()}{" "}
+                  {/* Format the date */}
+                </Typography>
+                <Typography sx={{ paddingY: 1 }} variant="h6">
                   Amount Paid: ${selectedMember.paidamount}
                 </Typography>
               </Box>
