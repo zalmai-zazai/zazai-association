@@ -99,6 +99,12 @@ const Menuitems = [
     icon: IconLayoutDashboard,
     href: "/icons",
   },
+  {
+    id: uniqueId(),
+    title: "Payment",
+    icon: IconUserPlus,
+    href: "https://buy.stripe.com/test_3csaER0Fk0Jg8WQfYZ",
+  },
 ];
 
 export default Menuitems;
